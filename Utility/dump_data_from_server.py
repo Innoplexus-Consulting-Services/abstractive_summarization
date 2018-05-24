@@ -8,6 +8,8 @@ from random import randint
 CONDITION_QUERY = {"article.body": { "$exists": True, "$ne": None }, "article.front.article-meta.Abstract": {"$exists": True, "$ne": None}}
 OUTPUT_QUERY = {"article.body":1, "article.front.article-meta.Abstract":1, "_id":0}
 COLLECTION_NAME = "flat_pmc_data"
+
+# TODO: Take all these sensitive information from command line.
 DB_NAME = "testpmc"
 USER_NAME = 'read'
 PASSWORD = 'fdfREsse'
@@ -31,6 +33,7 @@ def get_data_from_db():
     collection = get_mongo_collection()
     overall_data = []
     count = 0
+    #TODO: Change this to random -https://docs.mongodb.com/manual/reference/operator/aggregation/sample/
     for document in collection.find(CONDITION_QUERY, OUTPUT_QUERY).skip(randint(1,10000)):
         instance_data = {"abstract": document["article"]["front"]["article-meta"]["Abstract"], "body": document["article"]["body"]}
         overall_data.append(instance_data)
@@ -45,8 +48,16 @@ def dump_data_json(overall_data):
     """it dumps the loaded data in the predifined DUMP_DATA_FILENAME file in json format"""
     with open(DUMP_DATA_FILENAME, mode='w') as feed_json:
         json.dump(overall_data, feed_json)
+        return True
+    return False
 
 
 if __name__ == "__main__":
-     data = get_data_from_db()
-     dump_data_json(data)
+    data = get_data_from_db()
+    response = dump_data_json(data)
+    if response:
+        print("Extraction was successfull. You can find your data here:",
+              DUMP_DATA_FILENAME)
+    else:
+        print("Extraction failed!")
+        exit(-1)
