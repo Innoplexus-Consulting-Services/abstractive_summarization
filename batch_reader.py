@@ -194,6 +194,7 @@ class Batcher(object):
       element = ModelInput(enc_inputs, dec_inputs, targets, enc_input_len,
                            dec_output_len, ' '.join(article_sentences),
                            ' '.join(abstract_sentences))
+
       self._input_queue.put(element)
 
   def _FillBucketInputQueue(self):

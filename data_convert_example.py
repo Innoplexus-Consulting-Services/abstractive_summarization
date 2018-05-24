@@ -54,7 +54,6 @@ def _text_to_binary():
 
 
 def main(unused_argv):
-  print(FLAGS.in_file)
   assert FLAGS.command and FLAGS.in_file and FLAGS.out_file
   if FLAGS.command == 'binary_to_text':
     _binary_to_text()

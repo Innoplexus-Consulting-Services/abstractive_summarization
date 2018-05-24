@@ -37,6 +37,8 @@ DOCUMENT_END = '</d>'
 class Vocab(object):
   """Vocabulary class for mapping words and ids."""
 
+  print('---------------------Vocab--------------------------')
+
   def __init__(self, vocab_file, max_size):
     self._word_to_id = {}
     self._id_to_word = {}
@@ -60,7 +62,7 @@ class Vocab(object):
     if word not in self._word_to_id:
       return None
     return self._word_to_id[word]
-  
+
   def WordToId(self, word):
     if word not in self._word_to_id:
       return self._word_to_id[UNKNOWN_TOKEN]
@@ -91,6 +93,9 @@ def ExampleGen(data_path, num_epochs=None):
 
   If there are multiple files specified, they accessed in a random order.
   """
+
+  print('---------------------ExampleGen--------------------------')
+
   epoch = 0
   while True:
     if num_epochs is not None and epoch >= num_epochs:
@@ -145,6 +150,10 @@ def GetWordIds(text, vocab, pad_len=None, pad_id=None):
   Returns:
     A list of ints representing word ids.
   """
+
+  print('---------------------GetWordsIds--------------------------')
+
+
   ids = []
   for w in text.split():
     i = vocab.WordToId(w)
@@ -183,11 +192,15 @@ def SnippetGen(text, start_tok, end_tok, inclusive=True):
   Yields:
     String snippets
   """
+
+  print('---------------------SnippetGen--------------------------')
+
+
   cur = 0
   while True:
     try:
-      start_p = text.index(start_tok, cur)
-      end_p = text.index(end_tok, start_p + 1)
+      start_p = text.index(start_tok.encode(), cur)
+      end_p = text.index(end_tok.encode(), start_p + 1)
       cur = end_p + len(end_tok)
       if inclusive:
         yield text[start_p:cur]
@@ -211,5 +224,7 @@ def ToSentences(paragraph, include_token=True):
   Returns:
     List of sentence strings.
   """
+  print('---------------------ToSentences--------------------------')
+
   s_gen = SnippetGen(paragraph, SENTENCE_START, SENTENCE_END, include_token)
-  return [s for s in s_gen]
+  return [s.decode() for s in s_gen]

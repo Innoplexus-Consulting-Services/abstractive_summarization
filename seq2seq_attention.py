@@ -23,8 +23,8 @@ Beyond."
 """
 import sys
 import time
-
 import tensorflow as tf
+
 import batch_reader
 import data
 import seq2seq_attention_decode
