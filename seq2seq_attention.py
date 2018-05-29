@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # Copyright 2016 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -61,7 +62,7 @@ tf.app.flags.DEFINE_bool('use_bucketing', False,
 tf.app.flags.DEFINE_bool('truncate_input', False,
                          'Truncate inputs that are too long. If False, '
                          'examples that are too long are discarded.')
-tf.app.flags.DEFINE_integer('num_gpus', 0, 'Number of gpus used.')
+tf.app.flags.DEFINE_integer('num_gpus', 1, 'Number of gpus used.')
 tf.app.flags.DEFINE_integer('random_seed', 111, 'A seed value for randomness.')
 
 
@@ -158,7 +159,7 @@ def _Eval(model, data_batcher, vocab=None):
 
 
 def main(unused_argv):
-  vocab = data.Vocab(FLAGS.vocab_path, 1000000)
+  vocab = data.Vocab(FLAGS.vocab_path, 10000000)
   # Check for presence of required special tokens.
   assert vocab.CheckVocab(data.PAD_TOKEN) > 0
   assert vocab.CheckVocab(data.UNKNOWN_TOKEN) >= 0

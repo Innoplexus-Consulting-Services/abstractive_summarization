@@ -37,7 +37,6 @@ DOCUMENT_END = '</d>'
 class Vocab(object):
   """Vocabulary class for mapping words and ids."""
 
-  print('---------------------Vocab--------------------------')
 
   def __init__(self, vocab_file, max_size):
     self._word_to_id = {}
@@ -51,7 +50,7 @@ class Vocab(object):
           sys.stderr.write('Bad line: %s\n' % line)
           continue
         if pieces[0] in self._word_to_id:
-          raise ValueError('Duplicated word: %s.' % pieces[0])
+          raise ValueError('Duplicated word: %s.' % (pieces[0] + " " +str(pieces[1])))
         self._word_to_id[pieces[0]] = self._count
         self._id_to_word[self._count] = pieces[0]
         self._count += 1
@@ -93,8 +92,6 @@ def ExampleGen(data_path, num_epochs=None):
 
   If there are multiple files specified, they accessed in a random order.
   """
-
-  print('---------------------ExampleGen--------------------------')
 
   epoch = 0
   while True:
@@ -151,8 +148,6 @@ def GetWordIds(text, vocab, pad_len=None, pad_id=None):
     A list of ints representing word ids.
   """
 
-  print('---------------------GetWordsIds--------------------------')
-
 
   ids = []
   for w in text.split():
@@ -193,8 +188,6 @@ def SnippetGen(text, start_tok, end_tok, inclusive=True):
     String snippets
   """
 
-  print('---------------------SnippetGen--------------------------')
-
 
   cur = 0
   while True:
@@ -224,7 +217,6 @@ def ToSentences(paragraph, include_token=True):
   Returns:
     List of sentence strings.
   """
-  print('---------------------ToSentences--------------------------')
 
   s_gen = SnippetGen(paragraph, SENTENCE_START, SENTENCE_END, include_token)
   return [s.decode() for s in s_gen]
