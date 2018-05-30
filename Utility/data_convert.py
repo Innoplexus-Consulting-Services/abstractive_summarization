@@ -10,6 +10,7 @@ from os import listdir
 from os.path import isfile, join
 
 from nltk.tokenize import sent_tokenize
+from nltk.tokenize import word_tokenize
 
 import tensorflow as tf
 from tensorflow.core.example import example_pb2
@@ -30,7 +31,7 @@ tf.app.flags.DEFINE_string('split', '', 'comma separated fractions of data') #sp
 # tf.app.flags.DEFINE_string('vocab_file','data/vocabulary','path to output the vocab of the training corpus')
 # tf.app.flags.DEFINE_integer('body_len', 30000, 'Define the length of body to consider')
 # tf.app.flags.DEFINE_integer('abs_len', 1500, 'Define the length of abstract to consider')
-tf.app.flags.DEFINE_integer('max_words', 500000, 'Define the max number of words to consider in vocab')
+tf.app.flags.DEFINE_integer('max_words', 5000000, 'Define the max number of words to consider in vocab')
 #
 # UNKNOWN_TOKEN = '<UNK>'
 # PAD_TOKEN = '<PAD>'
@@ -48,14 +49,15 @@ def _text_to_vocabulary(output_file):
        and stores it in vocab file"""
     # loading data.
     loaded_data = _get_json_file_data()
+    counts = {}
     # get all the words in the counter object.
     counter = collections.Counter()
     for document in loaded_data:
         body = document['body']
         abstract = document['abstract']
         # getting words.
-        words_body = body.split(" ")
-        words_abstract = abstract.split(" ")
+        words_body = word_tokenize(body)
+        words_abstract = word_tokenize(abstract)
         # updating the counter.
         counter.update(words_body)
         counter.update(words_abstract)
@@ -98,16 +100,9 @@ def _convert_json_to_binary(input_text_files, output_filename):
             body = document['body']
             abstract = document['abstract']
 
-            #TODO: Change it with re.escape()
-            for ch in ["\'"]:
-                if ch in body:
-                    body = body.replace(ch, "\\"+ch)
+            body = body.replace('\n',' ').replace('\t',' ')
+            abstract = abstract.replace('\n',' ').replace('\t',' ')
 
-            #TODO: Change it with re.escape()
-            for ch in ["\'"]:
-                if ch in abstract:
-                    abstract = abstract.replace(ch, "\\"+ch)
-            # sentence tokeization of body.
             sentences = sent_tokenize(body)
             body = '<d><p>' + ' '.join(['<s>' + sentence + '</s>' for sentence\
                                         in sentences]) + '</p></d>'
@@ -130,8 +125,6 @@ def main(unused_argv):
     assert FLAGS.command and FLAGS.in_file and FLAGS.out_files
     # parsing command line variables.
     output_filenames = FLAGS.out_files.split(',')
-    #TODO: isse usse karo be! @@&#^&
-    input_file = FLAGS.in_file
 
     if FLAGS.command == 'text_to_binary':
         assert FLAGS.split
