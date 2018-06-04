@@ -1,3 +1,5 @@
+"""Used for the tabular display of database/sample stats""""
+
 class TableFormatter:
 
     @staticmethod

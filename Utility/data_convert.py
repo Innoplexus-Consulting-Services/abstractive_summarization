@@ -1,5 +1,6 @@
 """converting the json data to tensorflow model feeding data"""
-
+""" Used when input files are singular i.e. one json file with
+    all bodies and abstracts of the documents"""
 #import dependencies
 import collections
 import struct

@@ -47,10 +47,12 @@ tf.app.flags.DEFINE_string('decode_dir', '', 'Directory for decode summaries.')
 tf.app.flags.DEFINE_string('mode', 'train', 'train/eval/decode mode')
 tf.app.flags.DEFINE_integer('max_run_steps', 10000000,
                             'Maximum number of run steps.')
-tf.app.flags.DEFINE_integer('max_article_sentences', 2,
+tf.app.flags.DEFINE_integer('max_words', 200000,
+                            'Maximum number of words to consider in vocabulary.')
+tf.app.flags.DEFINE_integer('max_article_sentences', 300,
                             'Max number of first sentences to use from the '
                             'article')
-tf.app.flags.DEFINE_integer('max_abstract_sentences', 100,
+tf.app.flags.DEFINE_integer('max_abstract_sentences', 50,
                             'Max number of first sentences to use from the '
                             'abstract')
 tf.app.flags.DEFINE_integer('beam_size', 4,
@@ -82,7 +84,7 @@ def _RunningAvgLoss(loss, running_avg_loss, summary_writer, step, decay=0.999):
 
 def _Train(model, data_batcher):
   """Runs model training."""
-  with tf.device('/cpu:0'):
+  with tf.device('/gpu:0'):
     model.build_graph()
     saver = tf.train.Saver()
     # Train dir is different from log_root to avoid summary directory
@@ -159,7 +161,7 @@ def _Eval(model, data_batcher, vocab=None):
 
 
 def main(unused_argv):
-  vocab = data.Vocab(FLAGS.vocab_path, 10000000)
+  vocab = data.Vocab(FLAGS.vocab_path, FLAGS.max_words)
   # Check for presence of required special tokens.
   assert vocab.CheckVocab(data.PAD_TOKEN) > 0
   assert vocab.CheckVocab(data.UNKNOWN_TOKEN) >= 0
@@ -176,13 +178,13 @@ def main(unused_argv):
       lr=0.15,  # learning rate
       batch_size=batch_size,
       enc_layers=4,
-      enc_timesteps=120,
-      dec_timesteps=30,
+      enc_timesteps=200,
+      dec_timesteps=35,
       min_input_len=2,  # discard articles/summaries < than this
       num_hidden=256,  # for rnn cell
-      emb_dim=128,  # If 0, don't use embedding
+      emb_dim=256,  # If 0, don't use embedding
       max_grad_norm=2,
-      num_softmax_samples=4096)  # If 0, no sampled softmax.
+      num_softmax_samples=8192)  # If 0, no sampled softmax.
 
   batcher = batch_reader.Batcher(
       FLAGS.data_path, vocab, hps, FLAGS.article_key,

@@ -214,7 +214,7 @@ class Seq2SeqAttentionModel(object):
               tf.nn.xw_plus_b(decoder_outputs[i], w, v))
 
       if hps.mode == 'decode':
-        with tf.variable_scope('decode_output'), tf.device('/cpu:0'):
+        with tf.variable_scope('decode_output'), tf.device('/gpu:0'):
           best_outputs = [tf.argmax(x, 1) for x in model_outputs]
           tf.logging.info('best_outputs%s', best_outputs[0].get_shape())
           self._outputs = tf.concat(
@@ -225,7 +225,7 @@ class Seq2SeqAttentionModel(object):
 
       with tf.variable_scope('loss'), tf.device(self._next_device()):
         def sampled_loss_func(inputs, labels):
-          with tf.device('/cpu:0'):  # Try gpu.
+          with tf.device('/gpu:0'):  # Try gpu.
             labels = tf.reshape(labels, [-1, 1])
             return tf.nn.sampled_softmax_loss(
                 weights=w_t, biases=v, labels=labels, inputs=inputs,
