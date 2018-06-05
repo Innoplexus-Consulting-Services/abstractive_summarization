@@ -170,7 +170,7 @@ To prevent overfitting, we changed `--truncate_input = True`, so that it does no
 - avg. validation loss = 9.5
 
 ###### aim:
-- First, try removing the `<UNK>` tokens
+- First, try removing the `<UNK>` tokens on  smaller data
 - Then, scale up the model by feeding it with larger data corpus to prevent overfitting
 
 ##### version 2.1:
