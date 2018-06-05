@@ -61,14 +61,14 @@ Build label: 0.13.1
 
 Following is the configuration for the best trained model on Gigaword:
 
-**batch_size** : 4
-**bidirectional encoding layer** : 4
-**article length** : first 2 sentences, total words within 200
-**summary length** : total words within 35.
-**word embedding size** : 256
-**LSTM hidden units** : 256
-**Sampled softmax** : 8192
-**vocabulary size** : Most frequent 1000k words from dataset's article and summaries.
+- **batch_size** : 4
+- **bidirectional encoding layer** : 4
+- **article length** : first 2 sentences, total words within 200
+- **summary length** : total words within 35.
+- **word embedding size** : 256
+- **LSTM hidden units** : 256
+- **Sampled softmax** : 8192
+- **vocabulary size** : Most frequent 1000k words from dataset's article and summaries.
 
 ## How To Run
 
