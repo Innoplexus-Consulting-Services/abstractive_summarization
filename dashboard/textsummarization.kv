@@ -3,39 +3,114 @@
         orientation: 'horizontal'
 		canvas.before:
 			Rectangle:
-				source: './static/sexy_back.jpg'
+				# source: './static/sexy_back.jpg'
 				# source: 'd.jpg'
-				# source: './static/background.jpg'
+				source: './static/background.jpg'
 				size: self.size
 				pos: self.pos
         BoxLayout:
+            orientation: 'vertical'
             id: layout
-			size_hint_y: (.5,1)
+			size_hint: (.5,1)
 			spacing: 10
 			padding: [10, 0, 10, 0]
 
-            Label:
-                text: 'Text Summarization is Awesome!! :D'
-                text_size: self.width, None
-				color: (0, 0, 0, 2)
-				font_size: '20sp'
-				halign: 'left'
-				valign: 'bottom'
-				size_hint: (.2, .5)
-				pos_hint: {'top': 0.5 + self.size_hint[1]/2}
+            # '''Label:
+            #     text: 'Text Summarization is Awesome!! :D'
+            #     text_size: self.width, None
+			# 	color: (0, 0, 0, 2)
+			# 	font_size: '20sp'
+			# 	halign: 'left'
+			# 	valign: 'bottom'
+			# 	size_hint: (.2, .5)
+			# 	pos_hint: {'top': 0.5 + self.size_hint[1]/2}
+            # '''
+
+            BoxLayout:
+                orientation: 'vertical'
+                id: input_text
+                Label:
+                    text : "Input data is here"
+                    color : (1,1,1,2)
+                TextInput:
+                    multiline : True
+                    size_hint : (None,None)
+                    height : 130
+                    width :130
+                    hint_text : "INPUT TEXT HERE"
+
+
+
+            BoxLayout:
+                orientation: 'horizontal'
+                id: input_btn
+                Button:
+                    text : "prev"
+                    size_hint : (None,None)
+                    height : 30
+                Button
+                    text : "next"
+                    size_hint : (None,None)
+                    height : 30
 
         BoxLayout:
+            orientation: 'vertical'
             id: layout
-			size_hint_y: (.5,1)
+			size_hint: (.5,1)
 			spacing: 10
 			padding: [10, 0, 10, 0]
 
-            Label:
-                text: 'This is the Generated Text! :D '
-				text_size: self.width, None
-				color: (0, 0, 0, 2)
-				font_size: '20sp'
-				halign: 'left'
-				valign: 'bottom'
-				size_hint: (.2, .5)
-				pos_hint: {'top': 0.5 + self.size_hint[1]/2}
+            BoxLayout:
+                orientation: 'vertical'
+                id: input_abs
+                Label:
+                    text : "Input abstract is here"
+                    color : (1,1,1,2)
+                TextInput:
+                    multiline : True
+                    ize_hint : (None,None)
+                    height : 130
+                    width :130
+                    hint_text : "INPUT ABSTRACT HERE"
+
+            BoxLayout:
+                orientation: 'vertical'
+                id: output_text
+                Label:
+                    text : "Output data is here"
+                    color : (1,1,1,2)
+                TextInput:
+                    multiline : True
+                    size_hint : (None,None)
+                    height : 130
+                    width :130
+                    hint_text : "OUTPUT TEXT HERE"
+
+            BoxLayout:
+                canvas.before:
+        			Rectangle:
+        				# source: './static/sexy_back.jpg'
+        				# source: 'd.jpg'
+        				source: './static/background.jpg'
+        				size: self.size
+        				pos: self.pos
+                    Color:
+                        rgb: 0.8,1,0.8
+
+                orientation: 'horizontal'
+                id: summ_btn
+                Button:
+                    text : "Summarize"
+                    size_hint : (None,None)
+                    height : 30
+
+            # '''Label:
+            #     text: 'This is the Generated Text! :D '
+			# 	text_size: self.width, None
+			# 	color: (0, 0, 0, 2)
+			# 	font_size: '20sp'
+			# 	halign: 'left'
+			# 	valign: 'bottom'
+			# 	size_hint: (.2, .5)
+			# 	pos_hint: {'top': 0.5 + self.size_hint[1]/2}
+            # '''
