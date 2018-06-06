@@ -18,7 +18,7 @@ class RootWidget(BoxLayout):
 
 	def __init__(self, **kwargs):
 		super(RootWidget, self).__init__(**kwargs)
-		Window.size = (1366, 768)
+		Window.size = (1600, 900)
 
 
 class textSummarizationApp(App):

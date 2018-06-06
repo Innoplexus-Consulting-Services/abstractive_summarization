@@ -11,9 +11,10 @@
         BoxLayout:
             orientation: 'vertical'
             id: layout
-			size_hint: (.5,1)
+			size_hint: (0.6,1)
 			spacing: 10
 			padding: [10, 0, 10, 0]
+
 
             # '''Label:
             #     text: 'Text Summarization is Awesome!! :D'
@@ -28,81 +29,88 @@
 
             BoxLayout:
                 orientation: 'vertical'
+                size_hint: (1,0.9)
                 id: input_text
-                Label:
-                    text : "Input data is here"
-                    color : (1,1,1,2)
-                TextInput:
-                    multiline : True
-                    size_hint : (None,None)
-                    height : 130
-                    width :130
-                    hint_text : "INPUT TEXT HERE"
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint: (1,0.1)
+                    Label:
+                        text : "Input data is here"
+                        color : (0,0,0,2)
+                        size: self.size
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint: (1,0.9)
+                    TextInput:
+                        multiline : True
+                        # size_hint : (None,None)
+                        hint_text : "INPUT TEXT HERE"
+                        size: self.size
 
 
 
             BoxLayout:
                 orientation: 'horizontal'
+                size_hint: (1,0.1)
                 id: input_btn
                 Button:
                     text : "prev"
-                    size_hint : (None,None)
+                    size_hint : (0.5,1)
                     height : 30
                 Button
                     text : "next"
-                    size_hint : (None,None)
+                    size_hint : (0.5,1)
                     height : 30
 
         BoxLayout:
             orientation: 'vertical'
             id: layout
-			size_hint: (.5,1)
+			size_hint: (0.4,1)
 			spacing: 10
 			padding: [10, 0, 10, 0]
 
             BoxLayout:
                 orientation: 'vertical'
                 id: input_abs
-                Label:
-                    text : "Input abstract is here"
-                    color : (1,1,1,2)
-                TextInput:
-                    multiline : True
-                    ize_hint : (None,None)
-                    height : 130
-                    width :130
-                    hint_text : "INPUT ABSTRACT HERE"
+                size_hint: (1,0.45)
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint: (1,0.1)
+                    Label:
+                        text : "Input abstract is here"
+                        color : (0,0,0,2)
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint: (1,0.9)
+                    TextInput:
+                        multiline : True
+                        # size_hint : (None,None)
+                        hint_text : "INPUT ABSTRACT HERE"
 
             BoxLayout:
                 orientation: 'vertical'
                 id: output_text
-                Label:
-                    text : "Output data is here"
-                    color : (1,1,1,2)
-                TextInput:
-                    multiline : True
-                    size_hint : (None,None)
-                    height : 130
-                    width :130
-                    hint_text : "OUTPUT TEXT HERE"
+                size_hint: (1,0.45)
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint: (1,0.1)
+                    Label:
+                        text : "Output data is here"
+                        color : (0,0,0,2)
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint: (1,0.9)
+                    TextInput:
+                        multiline : True
+                        hint_text : "OUTPUT TEXT HERE"
 
             BoxLayout:
-                canvas.before:
-        			Rectangle:
-        				# source: './static/sexy_back.jpg'
-        				# source: 'd.jpg'
-        				source: './static/background.jpg'
-        				size: self.size
-        				pos: self.pos
-                    Color:
-                        rgb: 0.8,1,0.8
-
+                size_hint: (1,0.1)
                 orientation: 'horizontal'
                 id: summ_btn
                 Button:
                     text : "Summarize"
-                    size_hint : (None,None)
-                    height : 30
+                    size_hint : (1,1)
 
             # '''Label:
             #     text: 'This is the Generated Text! :D '
