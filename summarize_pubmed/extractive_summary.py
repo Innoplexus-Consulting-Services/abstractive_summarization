@@ -4,6 +4,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import json
 import re
 import io
 import os
@@ -39,7 +40,7 @@ def preprocess_text(text):
     for ch in char_set:
         text = text.replace(ch, ' ')
     text = ''.join([i if ord(i) < 128 else ' ' for i in text]) #only ascii chars
-    text = re.sub(r'\([^)]*\)', '',text) #removes the bracket texts
+    text = re.sub(r"[\(\[].*?[\)\]]", '',text) #removes the bracket texts
     #removing brackets and numbers
     for brack in ["(",")","[","]","{","}"]:
         text = text.replace(brack, ' ')
@@ -48,12 +49,14 @@ def preprocess_text(text):
     punct_set = [" ,", " .", " !", " ?", " '"," \""]
     for punct in punct_set:
         text = text.replace(punct, punct[-1])
-    text = re.sub(' +',' ',text.strip().replace('\n',' '))
+    text = re.sub(' +',' ',text.strip())
     return re.sub(' +',' ',text.strip())
 
-def read_file(text_file):
-    with io.open(text_file,'r') as file:
-        lines = file.readlines()
+def read_file(file):
+    with open(file, mode='r') as file_json:
+        loaded_data = json.load(file_json)
+        for document in loaded_data:
+            lines = document['body']
     return lines
 
 def extractive_summarize(text, ratio, split):
@@ -80,8 +83,8 @@ if __name__ == "__main__":
     else:
         print('Text file reading unsuccessful!.. Exiting. see ya!')
         exit(-1)
-    text = ''.join(lines)
-    text = preprocess_text(text)
+    # text = ''.join(lines)
+    text = preprocess_text(lines)
     summarized_text = extractive_summarize(text, ratio, split)
     if summarized_text:
         print('Summarization done!')
