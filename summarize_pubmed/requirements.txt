@@ -5,5 +5,3 @@ gensim==3.4.0
 six==1.11.0
 tensor2tensor==1.6.3
 nltk==3.3
-files2rouge==2.0.0
-#(install files2rouge as mentioned in it's git repo)
