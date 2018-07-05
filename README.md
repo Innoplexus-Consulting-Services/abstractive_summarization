@@ -8,6 +8,7 @@ As per our use case, I used PubMed data available with us. For our task, the bod
 The data can be dumped using the scripts in [gitlab-repo](https://gitlab.innoplexus.de/Innoplexus-Consulting-Services/DocumentClassificationAPI/tree/transformer_model/dump_data). The data analysing scripts and stats are also pushed there. 
 
 The full dataset contains of 7 lacs document with body-text and it's corresponding abstracts. On average number of words in body and abstract is around 3000 and 200 respectively. Our database characters number can be summarized as :
+
 | Stats-Criteria 	|     Abstract     	|       Body       	|
 |:--------------:	|:----------------:	|:----------------:	|
 |       Min      	|         3        	|         3        	|
