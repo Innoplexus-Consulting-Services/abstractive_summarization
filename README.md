@@ -60,9 +60,11 @@ The environment used has been uploaded [here](https://drive.google.com/open?id=1
 
 ## Approaches adopted
 We mainly adopted two approaches throughout the project. 
+
 ### Abstrative Summarization
 - tensorflow-research model - **textsum** ([git-link](https://github.com/tensorflow/models/tree/master/research/textsum)) ([our-project-link](https://gitlab.innoplexus.de/Innoplexus-Consulting-Services/DocumentClassificationAPI/tree/textsum_dev))
 - tensor2tensor **transformer model** ([git-link](https://github.com/tensorflow/tensor2tensor)) ([out-project-link](https://gitlab.innoplexus.de/Innoplexus-Consulting-Services/DocumentClassificationAPI/tree/transformer_model))
+
 ### Extractive Summarization
 - Gensim Textrank summarization for summarizing our document body (of approx 270-300 sentences) to 100 sentences. The implementation is in [here](https://gitlab.innoplexus.de/Innoplexus-Consulting-Services/DocumentClassificationAPI/tree/transformer_model/summarize_pubmed).
 
