@@ -148,7 +148,7 @@ t2t-trainer \
 Training the model can be done by defining two types of $PROBLEM 
  - Training with default *cnn_dailymail32k* problem
  - Training with our custom-made *summarize_pubmed*
- 
+
 #### Training with *cnn_dailymail32k* as problem
 For training with the default cnn_dailymail32k problem, we need to convert our pubmed data in their format first and store it in tmp_dir.  First keep three folders seperately as train, test and val, each with the files you want to train, test and val on. Divide the number of files accordingly, e.g. 8:1:1 files in train,test and val folder respectively. Then run the script *convert_data_form.py* as 
 ```
@@ -187,7 +187,9 @@ With summarize_pubmed problem, we can train on default *SubWord* tokenizer or ou
 ##### Biomedical Vocab Generation
 This method of vocab generation, we keep the biomedical tokens intact. For example,
 ```
+$ from biomedical_tokenizer import biomedical_tokenizer
 $ text = "Unfortunately, he is diagonised with lung cancer. The cancer is still in stage-1."
+$ biomedical_tokenizer(text)
 Counter({',': 1,
          '.': 2,
          'The': 1,
