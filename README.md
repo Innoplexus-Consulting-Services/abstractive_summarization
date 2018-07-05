@@ -56,6 +56,12 @@ Cuda compilation tools, release 9.0, V9.0.176
 $ bazel version
 Build label: 0.13.1
 ```
+## Reference Materials
+Here are some materials of study which can give us a deeper understanding to the problem:
+* Official google's blog post [link](https://ai.googleblog.com/2016/08/text-summarization-with-tensorflow.html)
+* Sequence to sequence learning paper - [link](https://arxiv.org/pdf/1409.3215.pdf)
+* Textsum documentation - [link](http://textsum-document.readthedocs.io/en/latest/textsum.html)
+* Pavel Surmenok blog - [link](http://pavel.surmenok.com/2016/10/15/how-to-run-text-summarization-with-tensorflow/)
 
 ## Hyperparameter Configuration:
 
