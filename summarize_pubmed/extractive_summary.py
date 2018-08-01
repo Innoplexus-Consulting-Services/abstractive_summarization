@@ -52,9 +52,7 @@ def preprocess_text(text):
     return re.sub(' +',' ',text.strip())
 
 def read_file(text_file):
-    with io.open(text_file,'r') as file:
-        lines = file.readlines()
-    return lines
+    return open(text_file,'r',encoding='utf-8').read().splitlines()
 
 def extractive_summarize(text, ratio, split):
     summarized_text = summarize(text, ratio=ratio, split=split)
@@ -73,6 +71,7 @@ if __name__ == "__main__":
     preprocess_file = FLAGS.preprocess_file
     ratio = FLAGS.extractive_summarize_ratio
     split = FLAGS.split
+    print(">>>>>>>>>>>>", ratio)
 
     lines = read_file(text_file)
     if lines:
