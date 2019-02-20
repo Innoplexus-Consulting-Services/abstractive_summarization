@@ -322,9 +322,9 @@ def slicenet_params1():
   hparams.add_hparam("large_kernel_size", 15)  # New ones are added like this.
   hparams.add_hparam("separability", -2)
   # A dilation scheme, one of _DILATION_SCHEMES.
-  hparams.add_hparam("dilation_scheme", "1.1.1.1")
+  # hparams.add_hparam("dilation_scheme", "1.1.1.1")
   # A kernel scheme, one of _KERNEL_SCHEMES; overrides large_kernel_size.
-  hparams.add_hparam("kernel_scheme", "3.7.15.31")
+  # hparams.add_hparam("kernel_scheme", "3.7.15.31")
   hparams.add_hparam("audio_compression", 8)
   # attention-related flags
   hparams.add_hparam("attention_type", "simple")
