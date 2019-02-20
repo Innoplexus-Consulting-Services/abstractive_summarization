@@ -1858,7 +1858,7 @@ def step_preprocess(x, step, hparams):
   if hparams.add_step_timing_signal:
     x = add_step_timing_signal(x, step, hparams)
 
-  if ((hparams.add_position_timing_signal or hparams.add_position_timing_signal)
+  if ((hparams.add_position_timing_signal )
       and hparams.add_or_concat_timing_signal == "concat"):
     # linear projection to the original dimension of x
     x = common_layers.dense(
