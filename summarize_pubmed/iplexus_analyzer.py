@@ -173,7 +173,11 @@ class Analyze(object):
 # On Cloud use this
 # my_analyze = Analyze("10.240.0.146", 9400,('ctcuser', 'WSZwd3dd34ff4f'),  "analyzer_summary", "10.240.0.53", 6379)
 # On Local Use this
-my_analyze = Analyze("35.185.19.184",9400,('ctcuser', 'WSZwd3dd34ff4f'),"analyzer_summary", "10.240.0.53", 6379)
+# ES_HOST = "35.185.19.184"
+# REDIS_HOST = "10.240.0.53"
+ES_HOST = "localhost"
+REDIS_HOST = "localhost"
+my_analyze = Analyze(ES_HOST,9400,('ctcuser', 'WSZwd3dd34ff4f'),"analyzer_summary",REDIS_HOST, 6379)
 
 def tag_entities(text):
     concepts = my_analyze.analyze(text)
