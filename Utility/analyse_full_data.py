@@ -53,7 +53,7 @@ def get_data_from_db():
     """it extracts data in structured format as required by textsum."""
     collection = get_mongo_collection()
     count = 0
-    """For mongo version > 3.2""""
+    """For mongo version > 3.2"""
     # for document in collection.aggregate([{ "$sample" : {"size": DOCUMENT_SAMPLES}}, { "$match":  CONDITION_QUERY }]):
     print('Progress in reading #documents: ')
     for document in collection.find(CONDITION_QUERY,OUTPUT_QUERY):
