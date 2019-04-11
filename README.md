@@ -77,6 +77,50 @@ The folder contain many such files having json format as give below:
 The body will be a full size document or multiple document combined togather. The abstract is smaller concise form of the body.
 some sample files are provided at `sample_data/` and processed file after vocab generation and binarization are provided under `sample_processed_data/`.
 
+## Package Structure
+  ```js
+  ├── AUTHORS
+  ├── batch_reader.py
+  ├── beam_search.py
+  ├── BUILD
+  ├── dashboard
+  │   ├── main.py
+  │   ├── static
+  │   │   └── background.jpg
+  │   ├── textsummarization.kv
+  │   └── try.py
+  ├── data_convert_example.py
+  ├── data.py
+  ├── LICENSE
+  ├── README.md
+  ├── README.md~
+  ├── requirements.txt
+  ├── sample_data
+  │   ├── sample_1041.json
+  │   ├── sample_1043.json
+  │   ├── sample_1110.json
+  │   ├── sample_1116.json
+  │   ├── sample_1143.json
+  |
+  ├── sample_processed_data
+  │   ├── train.bin
+  │   └── vocab
+  ├── seq2seq_attention_decode.py
+  ├── seq2seq_attention_model.py
+  ├── seq2seq_attention.py
+  ├── seq2seq_lib.py
+  └── Utility
+      ├── analyse_full_data.py
+      ├── arrange.py
+      ├── convert_full_data.py
+      ├── data_convert.py
+      ├── dump_data_from_server.py
+      ├── dump_full_data_from_server.py
+      ├── full_db_stats.txt
+      ├── multi_convert_full_data.py
+      └── tableDisplay.py
+  ```
+
 ## How To Run
 ### Making vocabulary
 Creating vocabulary
@@ -101,12 +145,10 @@ Utility/convert_full_data.py:
 Splittng data into train.bin, test.bin, validation.bin
 
 ```python
-$ python Utility/convert_full_data.py --command text_to_binary \
-    --in_folder ~/folder/sample_files \
-    --out_files train.bin,validation.bin,test.bin
-    --split 0.8,0.15,0.05
+$ python Utility/convert_full_data.py --command text_to_binary  --in_folder ~/folder/sample_files  --out_files train.bin,validation.bin,test.bin --split 0.8,0.15,0.05
 
-Example : python ./Utility/convert_full_data.py --command text_to_binary     --in_folder ./sample_data/     --out_files ./sample_processed_data/train.bin,validation.bin,test.bin --split 0.8,0.15,0.05
+Example : convert_full_data.py --command text_to_binary     --in_folder ./sample_data/     --out_files ./sample_processed_data/train.bin,./sample_processed_data/validation.bin,./sample_processed_data/test.bin --split 0.8,0.15,0.05
+
 ```
 ### Run the training
 ```python
