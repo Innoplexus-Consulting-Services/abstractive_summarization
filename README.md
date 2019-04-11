@@ -83,12 +83,6 @@ some sample files are provided at `sample_data/` and processed file after vocab 
   ├── batch_reader.py
   ├── beam_search.py
   ├── BUILD
-  ├── dashboard
-  │   ├── main.py
-  │   ├── static
-  │   │   └── background.jpg
-  │   ├── textsummarization.kv
-  │   └── try.py
   ├── data_convert_example.py
   ├── data.py
   ├── LICENSE
@@ -104,6 +98,8 @@ some sample files are provided at `sample_data/` and processed file after vocab 
   |
   ├── sample_processed_data
   │   ├── train.bin
+  |   ├── test.bin
+  |   ├── validation.bin
   │   └── vocab
   ├── seq2seq_attention_decode.py
   ├── seq2seq_attention_model.py
