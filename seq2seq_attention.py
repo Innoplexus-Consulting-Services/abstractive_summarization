@@ -24,6 +24,7 @@ Beyond."
 """
 import sys
 import time
+
 import tensorflow as tf
 
 import batch_reader
@@ -47,8 +48,7 @@ tf.app.flags.DEFINE_string('decode_dir', '', 'Directory for decode summaries.')
 tf.app.flags.DEFINE_string('mode', 'train', 'train/eval/decode mode')
 tf.app.flags.DEFINE_integer('max_run_steps', 10000000,
                             'Maximum number of run steps.')
-tf.app.flags.DEFINE_integer('max_words', 200000,
-                            'Maximum number of words to consider in vocabulary.')
+tf.app.flags.DEFINE_integer('max_words', 200000,'Maximum number of words to consider in vocabulary.')
 tf.app.flags.DEFINE_integer('max_article_sentences', 300,
                             'Max number of first sentences to use from the '
                             'article')
