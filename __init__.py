@@ -1,2 +1,2 @@
-from .Utility import convert_full_data
+import Utility
 import seq2seq_attention

@@ -126,7 +126,7 @@ $ python Utility/convert_full_data.py --command text_to_vocabulary \
     --out_files ~/dest_folder/vocab
     --max_words number_of_words
 
-Example: python ./Utility/convert_full_data.py --command text_to_vocabulary --in_folder /data/DocumentClassificationAPI/sample_data/  --out_files  /data/DocumentClassificationAPI/sample_processed_data/vocab
+Example: python ./Utility/convert_full_data.py --command text_to_vocabulary --in_folder test_files/raw_files  --out_files  test_files/raw_files/vocab
 ```
 > ### Other options
 ```python
@@ -141,14 +141,14 @@ Utility/convert_full_data.py:
 Splittng data into train.bin, test.bin, validation.bin
 
 ```python
-$ python Utility/convert_full_data.py --command text_to_binary  --in_folder ~/folder/sample_files  --out_files train.bin,validation.bin,test.bin --split 0.8,0.15,0.05
+python Utility/convert_full_data.py --command text_to_binary  --in_folder ~/folder/sample_files  --out_files train.bin,validation.bin,test.bin --split 0.8,0.15,0.05
 
-Example : convert_full_data.py --command text_to_binary     --in_folder ./sample_data/     --out_files ./sample_processed_data/train.bin,./sample_processed_data/validation.bin,./sample_processed_data/test.bin --split 0.8,0.15,0.05
+Example : convert_full_data.py --command text_to_binary     --in_folder test_files/raw_files  --out_files test_files/splits/train.bin,test_files/splits/validation.bin,test_files/splits/test.bin --split 0.8,0.15,0.05
 
 ```
 ### Run the training
 ```python
-$ python seq2seq_attention.py --mode=train --article_key article --abstract_key abstract --data_path ./sample_processed_data/train.bin --vocab_path sample_data/vocab --log_root textsum/log_root --train_dir textsum/log_root/train --truncate_input True batch_size 8
+python seq2seq_attention.py --mode=train --article_key article --abstract_key abstract --data_path test_files/splits/train.bin --vocab_path test_files/vocab/vocab --log_root textsum/log_root --train_dir textsum/log_root/train --truncate_input True batch_size 8
 ```
 > ### Other options
 ``` bash
