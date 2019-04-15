@@ -125,7 +125,7 @@ $ python utility/convert_full_data.py --command text_to_vocabulary \
     --out_files ~/dest_folder/vocab
     --max_words number_of_words
 
-Example: python ./utility/convert_full_data.py --command text_to_vocabulary --in_folder test_files/raw_files  --out_files  test_files/raw_files/vocab
+python ./utility/convert_full_data.py --command text_to_vocabulary --in_folder ./test_files/raw_files/ --out_files  test_files/raw_files/vocab
 ```
 > ### Other options
 ```python
