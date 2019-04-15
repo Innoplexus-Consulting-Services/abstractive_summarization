@@ -18,7 +18,6 @@ class Hypothesis(object):
 
   def __init__(self, tokens, log_prob, state):
     """Hypothesis constructor.
-
     Args:
       tokens: start tokens for decoding.
       log_prob: log prob of the start tokens, usually 1.
@@ -30,7 +29,6 @@ class Hypothesis(object):
 
   def Extend(self, token, log_prob, new_state):
     """Extend the hypothesis with result from latest step.
-
     Args:
       token: latest token from decoding.
       log_prob: log prob of the latest decoded tokens.
@@ -55,7 +53,6 @@ class BeamSearch(object):
 
   def __init__(self, model, beam_size, start_token, end_token, max_steps):
     """Creates BeamSearch object.
-
     Args:
       model: Seq2SeqAttentionModel.
       beam_size: int.
@@ -71,7 +68,6 @@ class BeamSearch(object):
 
   def BeamSearch(self, sess, enc_inputs, enc_seqlen):
     """Performs beam search for decoding.
-
     Args:
       sess: tf.Session, session
       enc_inputs: ndarray of shape (enc_length, 1), the document ids to encode
@@ -128,7 +124,6 @@ class BeamSearch(object):
 
   def _BestHyps(self, hyps):
     """Sort the hyps based on log probs and length.
-
     Args:
       hyps: A list of hypothesis.
     Returns:
