@@ -223,3 +223,34 @@ We successfully ***removed all the `<UNK>`*** tokens by changing the binarisatio
 
 #### aim:
 - Having the `<UNK>` tokens removed, we just need to train it on larger dataset to prevent overfitting.
+
+#### Evaluating Results
+For calculating ROUGE scores, we use *files2rouge* module. For installing files2rouge, please follow the instruction line-by-line as mentioned in the [repository](https://github.com/pltrdy/files2rouge).
+For rouge score calculation, we can just run
+``` bash
+files2rouge summ_pubmed.test.target decode_pubmed.txt
+```
+### Results
+After having the encoder and tokenizer integrated, I could only train on 200000 samples. The model did not overfit a lot. Here are the results,
+```
+ROUGE score calculated between gold summary
+---------------------------------------------
+1 ROUGE-1 Average_R: 0.09928 (95%-conf.int. 0.08813 - 0.11111)
+1 ROUGE-1 Average_P: 0.89567 (95%-conf.int. 0.88064 - 0.90830)
+1 ROUGE-1 Average_F: 0.16730 (95%-conf.int. 0.15267 - 0.18251)
+---------------------------------------------
+1 ROUGE-2 Average_R: 0.05326 (95%-conf.int. 0.04799 - 0.05877)
+1 ROUGE-2 Average_P: 0.51645 (95%-conf.int. 0.49365 - 0.53864)
+1 ROUGE-2 Average_F: 0.09159 (95%-conf.int. 0.08390 - 0.09969)
+---------------------------------------------
+1 ROUGE-L Average_R: 0.06384 (95%-conf.int. 0.05825 - 0.06994)
+1 ROUGE-L Average_P: 0.62875 (95%-conf.int. 0.60653 - 0.65057)
+1 ROUGE-L Average_F: 0.10991 (95%-conf.int. 0.10157 - 0.11832)
+```
+**Note** : As expected, give the body text is long, will have a very high accuracy but low recall.
+
+##  Future Implementations
+
+ - [ ] To include the **memory compressed attention** in our model like that implemented in wikisum problem of tensor2tensor, that can handle long sequences. [Understanding-handling-long-sequences-wikisum](To%20include%20the%20memory%20compressed%20attention%20in%20our%20model%20like%20that%20%20%20%20%20%20%20%20implemented%20in%20wikisum%20problem,%20that%20can%20handle%20long%20sequences.).
+ - [ ] Training on **larger training data** set for longer time. As seen for the summarization model, it needs larger training data and longer training time to work comendably well. With this, the repetitions are reduced (less overfitting) and the sequences generated are **more accurate**. Unfortunately I was not able to tackle the issue by training on ml-engine or on our GPU due to time constraint.
+ - [ ] The biomedical vocabulary generation takes **a lot of time**. Typically, with normal internet speed, for a vocab generation of 2 lacs samples, it takes around 2.5 days. It can be made faster using multiple CPU cores or even better, if we could use GPU for the same.   
