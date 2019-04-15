@@ -91,6 +91,7 @@ def _text_to_vocabulary(input_folder, output_file):
         file_vocab.write('<UNK> '+ str(unk_count)+'\n')
         file_vocab.write('<PAD> '+str(5)+'\n')
     print('Vocabulary file generated!!')
+    return True
 
 def _text_to_binary(input_folder, output_files, split_fractions):
     """ Splitting the input data by split fractions
@@ -115,6 +116,7 @@ def _text_to_binary(input_folder, output_files, split_fractions):
                 count_doc = 0
 
         print(file_out + ": " + str(sample_count))
+    return True
 
 
 def _convert_json_to_binary(document, output_filename):
