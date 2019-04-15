@@ -1,6 +1,6 @@
 import unittest
-from Utility import convert_full_data 
-import os 
+from utility import convert_full_data
+import os
 
 
 def test_text_to_vocab_function(input_folder, output_file):

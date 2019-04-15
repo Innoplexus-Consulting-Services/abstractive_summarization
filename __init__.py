@@ -1,2 +1,2 @@
-import Utility
+import utility
 import seq2seq_attention

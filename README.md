@@ -9,8 +9,7 @@ render a summary. Importance of sentence is based on linguistic and statistical 
 words that were not in the original text. Naturally abstractive approaches are harder. For
 perfect abstractive summary, the model has to first truly understand the document and then
 try to express that understanding in short possibly using new words and phrases. Much
-harder than extractive. Has complex capabilities like generalization, paraphrasing and incorporating
-real-world knowledge
+harder than extractive. Has complex capabilities like generalization, paraphrasing and incorporating real-world knowledge
 
 ## Introduction
 The core model is the traditional sequence-to-sequence model with attention. It is customized (mostly inputs/outputs) for the text summarization task. Here we use [textsum model](https://github.com/tensorflow/models/tree/master/research/textsum), one of the research models of tensorflow, and tune it to our requirements. The model was trained on **PMC Data**, with the bodies and the corresponding abstracts of publications.
@@ -105,7 +104,7 @@ some sample files are provided at `sample_data/` and processed file after vocab 
   ├── seq2seq_attention_model.py
   ├── seq2seq_attention.py
   ├── seq2seq_lib.py
-  └── Utility
+  └── utility
       ├── analyse_full_data.py
       ├── arrange.py
       ├── convert_full_data.py
@@ -121,16 +120,16 @@ some sample files are provided at `sample_data/` and processed file after vocab 
 ### Making vocabulary
 Creating vocabulary
 ```python
-$ python Utility/convert_full_data.py --command text_to_vocabulary \
+$ python utility/convert_full_data.py --command text_to_vocabulary \
     --in_folder ~/folder/sample_files \
     --out_files ~/dest_folder/vocab
     --max_words number_of_words
 
-Example: python ./Utility/convert_full_data.py --command text_to_vocabulary --in_folder test_files/raw_files  --out_files  test_files/raw_files/vocab
+Example: python ./utility/convert_full_data.py --command text_to_vocabulary --in_folder test_files/raw_files  --out_files  test_files/raw_files/vocab
 ```
 > ### Other options
 ```python
-Utility/convert_full_data.py:
+utility/convert_full_data.py:
     --command: Either text_to_vocabulary or text_to_binary.Specify FLAGS.in_directories accordingly.
     --in_folder: path to input json data file
     --max_words: Define the max number of words to consider in vocab
@@ -141,7 +140,7 @@ Utility/convert_full_data.py:
 Splittng data into train.bin, test.bin, validation.bin
 
 ```python
-python Utility/convert_full_data.py --command text_to_binary  --in_folder ~/folder/sample_files  --out_files train.bin,validation.bin,test.bin --split 0.8,0.15,0.05
+python utility/convert_full_data.py --command text_to_binary  --in_folder ~/folder/sample_files  --out_files train.bin,validation.bin,test.bin --split 0.8,0.15,0.05
 
 Example : convert_full_data.py --command text_to_binary     --in_folder test_files/raw_files  --out_files test_files/splits/train.bin,test_files/splits/validation.bin,test_files/splits/test.bin --split 0.8,0.15,0.05
 
@@ -233,7 +232,7 @@ files2rouge summ_pubmed.test.target decode_pubmed.txt
 ### Results
 After having the encoder and tokenizer integrated, I could only train on 200000 samples. The model did not overfit a lot. Here are the results,
 ```
-ROUGE score calculated between gold summary
+ROUGE score calculated between gold summary and predictions
 ---------------------------------------------
 1 ROUGE-1 Average_R: 0.09928 (95%-conf.int. 0.08813 - 0.11111)
 1 ROUGE-1 Average_P: 0.89567 (95%-conf.int. 0.88064 - 0.90830)
