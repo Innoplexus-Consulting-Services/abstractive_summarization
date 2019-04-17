@@ -1,5 +1,7 @@
 # Abstractive Summarization
 
+![Quality gate](http://35.185.78.184/api/project_badges/quality_gate?project=DocumentClassificationAPI) ![Quality Gate Status](http://35.185.78.184/api/project_badges/measure?project=DocumentClassificationAPI&metric=alert_status)  
+
 ## Some background
  - ** Extractive summarization : ** systems form summaries by copying parts of the source text
 through some measure of importance and then combine those part/sentences together to
@@ -74,7 +76,7 @@ The folder contain many such files having json format as give below:
 [{"body": "\nionospheric sounding is significant for studying the ionosphere which is an important part of the earth\u2019s upper atmosphere1. characteristic parameters like electron density, electron temperature, total electron content (tec) etc. can be obtained by equipment such as ionosonde, sounding rocket and radar as well as global navigation satellite system (gnss)234567. gnss provides an opportunity for sounding the ionosphere with high accuracy, temporal and spatial resolution. ,....................", "abstract": "\nglobal ionospheric products of vertical total electron content (vtec) derived from gnss measurements may have low accuracy over oceans and southern latitudes where there are not rich observations. project loon provides a great opportunity to enhance the measurements over those areas............."}]
 ```
 The body will be a full size document or multiple document combined togather. The abstract is smaller concise form of the body.
-some sample files are provided at `sample_data/` and processed file after vocab generation and binarization are provided under `sample_processed_data/`.
+some sample files files , vocab and train-test split are provided at `test_files`.
 
 ## Package Structure
   ```js
@@ -120,7 +122,7 @@ some sample files are provided at `sample_data/` and processed file after vocab 
 ### Making vocabulary
 Creating vocabulary
 ```python
-$ python utility/convert_full_data.py --command text_to_vocabulary \
+python utility/convert_full_data.py --command text_to_vocabulary \
     --in_folder ~/folder/sample_files \
     --out_files ~/dest_folder/vocab
     --max_words number_of_words
