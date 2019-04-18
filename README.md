@@ -260,5 +260,5 @@ ROUGE score calculated between gold summary and predictions
 ## Bugs
 You can raise issues in github issues.
 
-## Authors
+## Author
 Sunil Patel - sunil.patel@innoplexus.com
