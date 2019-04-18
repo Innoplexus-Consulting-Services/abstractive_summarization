@@ -255,3 +255,10 @@ ROUGE score calculated between gold summary and predictions
  - [ ] To include the **memory compressed attention** in our model like that implemented in wikisum problem of tensor2tensor, that can handle long sequences. [Understanding-handling-long-sequences-wikisum](To%20include%20the%20memory%20compressed%20attention%20in%20our%20model%20like%20that%20%20%20%20%20%20%20%20implemented%20in%20wikisum%20problem,%20that%20can%20handle%20long%20sequences.).
  - [ ] Training on **larger training data** set for longer time. As seen for the summarization model, it needs larger training data and longer training time to work comendably well. With this, the repetitions are reduced (less overfitting) and the sequences generated are **more accurate**. Unfortunately I was not able to tackle the issue by training on ml-engine or on our GPU due to time constraint.
  - [ ] The biomedical vocabulary generation takes **a lot of time**. Typically, with normal internet speed, for a vocab generation of 2 lacs samples, it takes around 2.5 days. It can be made faster using multiple CPU cores or even better, if we could use GPU for the same.   
+
+
+## Bugs
+You can raise issues in github issues.
+
+## Authors
+Sunil Patel - sunil.patel@innoplexus.com
