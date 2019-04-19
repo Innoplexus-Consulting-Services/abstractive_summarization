@@ -1,6 +1,5 @@
 # Abstractive Summarization
 
-![Quality Gate Status](http://35.185.78.184/api/project_badges/measure?project=DocumentClassificationAPI&metric=alert_status)  
 
 ## Some background
  - ** Extractive summarization : ** systems form summaries by copying parts of the source text
